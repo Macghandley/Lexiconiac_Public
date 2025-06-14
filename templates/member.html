@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ member.username }}{% endblock %}
+{% block description %}{{ member.username|e('html_attr') }} on Lexiconiac{% endblock %}
+
+{% block content %}
+<main class="member_container" id="content">
+  <section class="header">
+    <h1>{{ member.username }}</h1>
+    <p class="member"><b>Member since:</b> {{ member.joined|date('F d, Y') }}</p>
+    {% if success %}<div class="alert alert-success">{{ success }}</div>{% endif %}
+    {% if session.id == member.id %}
+      <!-- <nav class="member-options">
+        <a href="{{ doc_root }}member-edit-profile/" class="button button_gray">Edit profile</a>
+      </nav> -->
+    {% endif %}
+  </section>
+</main>
+{% endblock %}

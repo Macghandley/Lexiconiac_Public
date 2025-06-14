@@ -1,0 +1,31 @@
+{% extends 'sources_display.html' %}
+{% block content %}
+<main class="sources_container" id="content">
+  <div class="single_source_header">
+    <a href="{{ doc_root }}sources/{{ session.id }}/{{ session.username }}" class="back_button" title="Back">X</a>
+    <h1>{{source.source}}</h1>    
+  </div>
+  
+  <section class="source_info">
+    <p>
+      <b>Color:</b> 
+      <span style="display: inline-block; width: 1em; height: 1em; background-color: {{ source.color }}; border: 1px solid #ccc; vertical-align: middle;"></span>
+      {{source.color}}
+    </p>
+    <!-- <p>{{source.credits}}</p> -->
+    <p><b>Date Added:</b> {{source.date_added}}</p>
+    {% if words is not empty %}
+    <p><b>Words Associated:</b></p>
+    <ul>
+        {% for word in words %}
+            <li>{{ word.word }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No words associated.</p>
+    {% endif %}
+    <a href="{{ doc_root }}edit-source/{{source.id}}/{{ session.username }}" class="button button_orange" title="Edit Source">Edit</a>
+    <a href="{{ doc_root }}delete-source/{{source.id}}/{{ session.username }}" class="button button_red" title="Delete Source">Delete</a>
+  </section>
+</main>
+{% endblock %}

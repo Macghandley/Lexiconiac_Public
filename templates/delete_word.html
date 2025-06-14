@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+  <main class="word_container" id="content">
+    <section class="word_header">
+        <h1>Delete Word</h1>
+    </section>
+    <form action="{{ doc_root }}delete-word/{{ word.id }}" method="POST" class="narrow">
+      <p>Click confirm to delete the word: <em>{{ word.word }}</em></p>
+      <input type="submit" name="delete" value="confirm" class="button button_green" />
+      <a href="{{ doc_root }}words/{{ session.id }}/{{ session.username }}" class="button button_gray">Cancel</a>
+    </form>
+  </main>
+
+{% endblock %}

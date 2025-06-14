@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Lexiconiac{% endblock %}</title>
+    <meta name="description" content="{% block description %}Learn more lexicon{% endblock %}">
+    <link rel="stylesheet" type="text/css" href="{{ doc_root }}css/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ doc_root }}css/words.css">
+    <link rel="stylesheet" type="text/css" href="{{ doc_root }}css/sources.css">
+    <link rel="stylesheet" type="text/css" href="{{ doc_root }}css/member.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="header-left">
+          <a href="{{ doc_root }}words/{{ session.id }}/{{ session.username }}">
+            <img src="{{ doc_root }}img/lexilogo.png" class="logo-img" alt="Lexiconiac Logo">
+          </a>
+        </div>
+      
+        <div class="header-center">
+          <h1>Lexiconiac</h1>
+        </div>
+
+        <div class="header-right">
+          {% if session.id == 0 %}
+            <a href="{{ doc_root }}login" class="nav-item nav-link">Log in</a> 
+            <a href="{{ doc_root }}register" class="nav-item nav-link">Register</a>
+          {% else %}
+            <a href="{{ doc_root }}words/{{ session.id }}/{{ session.username }}">Words</a> 
+            <a href="{{ doc_root }}sources/{{ session.id }}/{{ session.username }}">Sources</a> 
+            <a href="{{ doc_root }}member/{{ session.id }}/{{ session.username }}">Profile</a> 
+            <a href="{{ doc_root }}logout">Logout</a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+    {% block content %}{% endblock %}
+    <footer>
+      <div class="footer_container">
+        <!-- <a href="{{ doc_root }}contact">Contact us</a> -->
+        <span class="copyright">&copy; Lexiconiac {{ 'now'|date('Y') }}</span>
+      </div>
+    </footer>
+  </body>
+</html>

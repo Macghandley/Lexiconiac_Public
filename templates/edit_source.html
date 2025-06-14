@@ -1,0 +1,33 @@
+{% extends 'sources.html' %}
+{% block header %}
+    <section class="source_header">
+        <h1>Edit Source</h1>
+    </section>
+{% endblock %}
+{% block main %}
+<main class="edit_source_container" id="content">
+    <section class="edit_source_form_section">
+        <form method="post" action="" class="sourceForm">
+
+            {% if errors.message %}<div class="alert alert-danger">{{ errors.message }}</div>{% endif %}
+
+            <div class="form-group">
+                <label for="source">Source Name: </label>
+                <input type="text" name="source" value="{{ source.source }}" id="source" class="form-control" />
+                <span class="errors">{{ errors.source }}</span><br>
+            </div>
+
+            <div class="form-group">
+                <label for="color">Source Color: </label>
+                <input type="color" name="color" value="{{ source.color }}" id="source_color" class="form-control" value="#ff0000">
+                <span class="errors">{{ errors.source_color }}</span><br>
+            </div>
+
+            <div class="button_div">
+                <button class="button button_green" type="submit">Submit</button>
+                <a href="{{ doc_root }}sources/{{ session.id }}/{{ session.username }}" class="button button_red">Cancel</a>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

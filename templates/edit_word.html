@@ -1,0 +1,43 @@
+{% extends 'words.html' %}
+{% block header %}
+    <section class="word_header">
+        <h1>Edit Word</h1>
+    </section>
+{% endblock %}
+{% block main %}
+<main class="edit_word_container" id="content">
+    <section class="edit_word_form_section">
+        <form method="post" action="" class="wordForm">
+
+            {% if errors.message %}<div class="alert alert-danger">{{ errors.message }}</div>{% endif %}
+
+            <div class="form-group">
+                <label for="word">Word: </label>
+                <input type="text" name="word" value="{{ word.word }}" id="word" class="form-control" />
+                <span class="errors">{{ errors.word }}</span><br>
+            </div>
+
+            <div class="form-group">
+                <label for="source_id">Source: </label>
+                <select id="source_id" name="source_id" required>
+                    {% for source in sources %}
+                        <option value="{{ source.id }}" style="color: {{ source.color }};" {% if source.source == word.source_name %}selected{% endif %}>{{ source.source }}</option>
+                    {% endfor %}
+                </select>
+                <span class="errors">{{ errors.source }}</span><br>
+            </div>
+
+            <div class="rating">
+                <label for="rating">Rating:</label>
+                <input type="range" id="rating" name="rating" min="0" max="10" value="{{ word.rating }}">
+            </div>
+            
+
+            <div class="button_div">
+                <button class="button button_green" type="submit">Submit</button>
+                <a href="{{ doc_root }}words/{{ session.id }}/{{ session.username }}" class="button button_red">Cancel</a>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

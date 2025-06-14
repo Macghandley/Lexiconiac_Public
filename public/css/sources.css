@@ -1,0 +1,80 @@
+/* General Styles */
+.sources_container {
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+    padding: 3em;
+}
+
+.source_header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    width: 100%;
+    margin-bottom: 1em;      
+}
+
+.source_grid {
+    width: 100%; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1em;
+    text-decoration: none;
+}
+
+.add-source-button{
+    background-color: rgb(25, 116, 25);
+    color: white;
+    border-radius: 0.5em;
+    padding: 2px;
+    text-decoration: none;
+}
+
+.edit-source-button {
+    display: inline-block;
+    width: 2em;
+    background-color: rgb(226, 165, 0);
+    color: white;
+    border-radius: 0.5em;
+    padding: 2px;
+    text-decoration: none;
+    margin-top: 1em;
+}
+
+.delete-source-button {
+    display: inline-block;
+    width: 2em;
+    background-color: red;
+    color: white;
+    border-radius: 0.5em;
+    padding: 2px;
+    text-decoration: none;
+    margin-top: 1em;
+}
+
+.source_header h1{
+    font-size: 2rem;  
+    font-weight: bold;
+    margin: 0; 
+}
+
+.single_source_header h1{
+    font-size: 2rem;  
+    font-weight: bold;
+    margin: 0; 
+}
+
+.sources_container h4{
+    font-size: 1rem;  /* Or try 3rem for larger headers */
+    font-weight: bold;
+    margin: 0; 
+}
+
+/* Small screens (like phones) */
+@media (max-width: 600px) {
+    .sources_container {
+        padding: 2em;
+    }
+}
+

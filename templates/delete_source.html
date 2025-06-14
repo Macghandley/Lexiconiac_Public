@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+  <main class="sources_container" id="content">
+    <form action="{{ doc_root }}delete-source/{{ source.id }}" method="POST" class="narrow">
+      <h1>Delete Source</h1>
+      <p>Click confirm to delete the source: <em>{{ source.source }}</em></p>
+      <input type="submit" name="delete" value="confirm" class="button button_green" />
+      <a href="{{ doc_root }}sources/{{ session.id }}/{{ session.username }}" class="button button_gray">Cancel</a>
+    </form>
+  </main>
+
+{% endblock %}

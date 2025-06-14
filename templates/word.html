@@ -1,0 +1,23 @@
+{% extends 'words_display.html' %}
+{% block content %}
+<main class="word_container" id="content">
+  <div class="single_word_header">
+    <a href="{{ doc_root }}words/{{ session.id }}/{{ session.username }}" class="back_button" title="Back">X</a>
+    <h1>{{word.word}}</h1>
+  </div>
+  <section class="word_info">
+    <p><b>Definition(s):</b><br>{{word.definition|raw}}</p>
+    <p><b>Part of Speech:</b> {{word.part_of_speech}}</p>
+    <p><b>Synonyms:</b> {{word.synonyms}}</p>
+    <p><b>Antonyms:</b> {{word.antonyms}}</p>
+    <p><b>First Known Use:</b> {{word.first_known_use}}</p>
+    <p><b>Etymology:</b> {{word.etymology|raw}}</p>
+    <p><b>Stems:</b> {{word.stems}}</p>
+    <p><b>Rating:</b> {{word.rating}} / 10</p>
+    <p><b>Source:</b> {{word.source_name}}</p>
+    <p><b>Date Added:</b> {{word.member_word_date_added}}</p>
+    <a href="{{ doc_root }}edit-word/{{word.id}}/{{ session.username }}" class="button button_orange" title="Edit Word">Edit</a>
+    <a href="{{ doc_root }}delete-word/{{word.id}}/{{ session.username }}" class="button button_red" title="Delete Word">Delete</a>
+  </section>
+</main>
+{% endblock %}

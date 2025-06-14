@@ -1,0 +1,15 @@
+{% extends 'words.html' %}
+{% block header %}
+    <section class="word_header">
+        <h1>Words</h1>
+        <a href="{{ doc_root }}add-word/{{ session.id }}" class="button button_green">Add Word</a>
+        <!-- <select class="sort_words_select">Sort</select> -->
+    </section>
+{% endblock %}
+{% block main %}
+    <section class="word_grid">      
+        {% for word in words %}
+            <a class="word" href="{{ doc_root }}word/{{word.id}}/{{ session.username }}" style="text-decoration: underline; text-decoration-color: {{ word.color }}; text-decoration-thickness: 3px;">{{ word.word }}</a>
+        {% endfor %}
+    </section>
+{% endblock %}

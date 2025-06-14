@@ -1,0 +1,14 @@
+{% extends 'sources.html' %}
+{% block header %}
+<section class="source_header">
+    <h1>Sources</h1>
+    <a href="{{ doc_root }}add-source/{{ session.id }}" class="button button_green">Add Source</a>
+</section>
+{% endblock %}
+{% block main %}
+<section class="source_grid">
+    {% for source in sources %}
+        <a href="{{ doc_root }}source/{{source.id}}/{{ session.username }}" style="text-decoration: underline; text-decoration-color: {{ source.color }}; text-decoration-thickness: 3px;">{{ source.source }}</a>
+    {% endfor %}
+</section>
+{% endblock %}
