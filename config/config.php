@@ -1,10 +1,16 @@
 <?php
 define('DEV', false);
-define('ROOT_FOLDER', 'public');
+define('ROOT_FOLDER', '');
 
-$this_folder   = substr(__DIR__, strlen($_SERVER['DOCUMENT_ROOT'])); 
-$parent_folder = dirname($this_folder);                             
-define("DOC_ROOT", rtrim($parent_folder, '/') . '/' . ROOT_FOLDER . '/');
+// if (DEV) {
+//     // When running on localhost in a subfolder
+//     $this_folder = substr(__DIR__, strlen($_SERVER['DOCUMENT_ROOT']));
+//     $parent_folder = dirname($this_folder);
+//     define("DOC_ROOT", rtrim($parent_folder, '/') . '/' . ROOT_FOLDER . '/');
+// } else {
+    // On Railway, public/ is the root, so no prefix
+define("DOC_ROOT", '/');
+// }
 
 // Database settings
 $type     = 'mysql';                 
