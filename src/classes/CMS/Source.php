@@ -20,7 +20,7 @@ class Source
     
     public function getSourceFromMember(int $source_id, int $member_id)
     {
-        $sql = "SELECT s.*, ms.member_id, ms.color
+        $sql = "SELECT s.*, ms.member_id, ms.color, ms.date_added
                 FROM source s
                 JOIN member_source ms ON s.id = ms.source_id
                 WHERE s.id = :source_id AND ms.member_id = :member_id
