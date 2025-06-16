@@ -119,12 +119,13 @@ class Source
     {
         try{
             $this->db->beginTransaction();      
-            $sql = "INSERT INTO member_source (source_id, member_id, color)
-                    VALUES (:source_id, :member_id, :color)"; 
+            $sql = "INSERT INTO member_source (source_id, member_id, color, date_added)
+                    VALUES (:source_id, :member_id, :color, :date_added)"; 
             $params = [
                 'source_id'          => $source['source_id'],
                 'member_id'          => $source['member_id'],
-                'color'              => $source['color']             
+                'color'              => $source['color'],
+                'date_added'         => $source['date_added']
             ];
             $this->db->runSQL($sql, $params);          
             $this->db->commit();                         
