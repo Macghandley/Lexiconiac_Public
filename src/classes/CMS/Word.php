@@ -121,14 +121,13 @@ class Word
     }
 
     private function extractDefinitionsAsHtmlList($dictionaryData){
-        $shortdefs = $dictionaryData[0]['shortdef'];
-
         // Check if the expected structure exists
         // if (!isset($shortdefArray) || !is_array($shortdefArray)) {
         //     return "<p>No definition found.</p>";
         // }
         if(is_array($dictionaryData) && isset($dictionaryData[0]) && is_array($dictionaryData[0]) && isset($dictionaryData[0]['shortdef']))
         {
+            $shortdefs = $dictionaryData[0]['shortdef'];
             $output = "<ul>\n";
 
             foreach ($shortdefs as $def) {
