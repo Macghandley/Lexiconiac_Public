@@ -149,8 +149,6 @@ class Word
             $dictionaryData = $this->fetchAndDecode($word['word'], 'collegiate', $this->dictionary_api_key);
             $thesaurusData  = $this->fetchAndDecode($word['word'], 'thesaurus', $this->thesaurus_api_key);
             $definition = $this->extractDefinitionsAsHtmlList($dictionaryData[0]['shortdef']);
-            // var_dump($definition);
-            // exit;
             
             // Extract fields from API responses to populate $word   
             $word['date_added']       = date('Y-m-d H:i:s');
@@ -166,8 +164,6 @@ class Word
             $word['antonyms'] = isset($thesaurusData[0]['meta']['ants'][0]) 
                 ? implode(', ', $thesaurusData[0]['meta']['ants'][0]) 
                 : 'No antonyms were found';
-
-            //var_dump(array_keys($word));
 
             $this->db->beginTransaction();  
 
@@ -208,8 +204,6 @@ class Word
         try {
             $this->db->beginTransaction();
 
-            //var_dump(array_keys($word));
-
             $params = [
                 'member_id'        => $word['member_id'],
                 'word_id'          => $word['word_id'],
@@ -217,7 +211,6 @@ class Word
                 'rating'           => $word['rating'],
                 'date_added'       => $word['date_added']
             ];
-            var_dump($params);
 
             $sql = "INSERT INTO member_word 
                     (member_id, word_id, source_id, rating, date_added) 
