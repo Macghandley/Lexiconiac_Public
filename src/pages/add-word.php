@@ -94,12 +94,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             $memberWord['word_id'] = $userWord['id'];
             $saved = $cms->getWord()->createMemberWord($memberWord);                                              
             if ($saved == true) {  
-                redirect('words/', ['success' => 'word saved']);
+                redirect('words/');
             } 
         }
         else {                                                         
             $errors['warning'] = 'Word already exists';
-            redirect('words/', ['success' => 'word already in library']);
+            redirect('words/');
         }
     }
 }

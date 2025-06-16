@@ -68,10 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(!$memberHasSource)
         {
             $memberSource['source_id'] = $userSource['id'];
-            var_dump($memberSource);
             $saved = $cms->getSource()->createMemberSource($memberSource);                                              
             if ($saved == true) {  
-                redirect('sources/', ['success' => 'source saved']);
+                redirect('sources/');
             } 
         }
         else {                                                         
