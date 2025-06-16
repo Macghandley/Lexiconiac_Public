@@ -16,6 +16,7 @@ $memberSource = [
     'member_id'   => $id,
     'source_id'   => '',
     'color'       => '',
+    'date_added'  => date('Y-m-d H:i:s')
 ];
 
 $errors  = [
