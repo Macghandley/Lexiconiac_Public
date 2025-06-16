@@ -120,23 +120,28 @@ class Word
         return $data;
     }
 
-    private function extractDefinitionsAsHtmlList($shortdefArray): string {
-        $definitions = [];
+    private function extractDefinitionsAsHtmlList($dictionaryData){
+        $shortdefs = $dictionaryData[0]['shortdef'];
 
         // Check if the expected structure exists
-        if (!isset($shortdefArray) || !is_array($shortdefArray)) {
-            return "<p>No definition found.</p>";
+        // if (!isset($shortdefArray) || !is_array($shortdefArray)) {
+        //     return "<p>No definition found.</p>";
+        // }
+        if(is_array($dictionaryData) && isset($dictionaryData[0]) && is_array($dictionaryData[0]) && isset($dictionaryData[0]['shortdef']))
+        {
+            $output = "<ul>\n";
+
+            foreach ($shortdefs as $def) {
+                // Escape HTML special characters to prevent injection
+                $escapedDef = htmlspecialchars($def, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+                $output .= "  <li>{$escapedDef}</li>\n";
+            }
+
+            $output .= "</ul>";
         }
-
-        $output = "<ul>\n";
-
-        foreach ($shortdefArray as $def) {
-            // Escape HTML special characters to prevent injection
-            $escapedDef = htmlspecialchars($def, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-            $output .= "  <li>{$escapedDef}</li>\n";
+        else{
+            $output = "<p>No definition found.</p>";
         }
-
-        $output .= "</ul>";
 
         return $output;
     }
@@ -148,7 +153,7 @@ class Word
             // Query to Webster dictionary API
             $dictionaryData = $this->fetchAndDecode($word['word'], 'collegiate', $this->dictionary_api_key);
             $thesaurusData  = $this->fetchAndDecode($word['word'], 'thesaurus', $this->thesaurus_api_key);
-            $definition = $this->extractDefinitionsAsHtmlList($dictionaryData[0]['shortdef']);
+            $definition = $this->extractDefinitionsAsHtmlList($dictionaryData);
             
             // Extract fields from API responses to populate $word   
             $word['date_added']       = date('Y-m-d H:i:s');
