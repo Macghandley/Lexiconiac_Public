@@ -61,18 +61,19 @@ class Member
     public function create(array $member): bool
     {
         $member['password'] = password_hash($member['password'], PASSWORD_DEFAULT);  // Hash password
-        try {                                                          // Try to add member
-            $sql = "INSERT INTO member (username, email, password) 
-                    VALUES (:username, :email, :password);";           // SQL to add member
-            $this->db->runSQL($sql, $member);          // Run SQL
-            return true;                                               // Return true
-        } catch (\PDOException $e) {                                   // If PDOException thrown
-            error_log("Database error: " . $e->getMessage()); // Log full error
-            if ($e->errorInfo[1] === 1062) {                           // If error indicates duplicate entry
-                return false;                                          // Return false to indicate duplicate name
+        $member['joined'] = date('Y-m-d H:i:s'); 
+
+        try {                                                          
+            $sql = "INSERT INTO member (username, email, password, joined) 
+                    VALUES (:username, :email, :password, :joined);";           
+            $this->db->runSQL($sql, $member);        
+            return true;                                              
+        } catch (\PDOException $e) {                                   
+            error_log("Database error: " . $e->getMessage()); 
+            if ($e->errorInfo[1] === 1062) {                           
+                return false;                                   
             }   
-            return false;                                                       // Otherwise
-            throw $e;                                                  // Re-throw exception
+            return false;                                                
         }
     }
 
