@@ -27,8 +27,9 @@
                 <span class="errors">{{ errors.source }}</span><br>
             </div>
 
+
             <div class="rating">
-                <label for="rating">Rating:</label>
+                <label for="rating">Rating: <span id="rating_value">{{ word.rating }}</span> / 10</label>
                 <input type="range" id="rating" name="rating" min="0" max="10" value="{{ word.rating }}">
             </div>
             
