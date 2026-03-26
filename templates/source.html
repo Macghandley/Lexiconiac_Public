@@ -18,7 +18,7 @@
     <p><b>Words Associated:</b></p>
     <ul>
         {% for word in words %}
-            <li>{{ word.word }}</li>
+            <li><a href="{{ doc_root }}word/{{word.id}}/{{ session.username }}">{{ word.word }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
