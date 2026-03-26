@@ -1,6 +1,9 @@
 {% extends 'words_display.html' %}
 {% block content %}
 <main class="word_container" id="content">
+  {% if warning %}
+      <div class="alert alert-danger warning_text">{{ warning }}</div>
+  {% endif %}
   <div class="single_word_header">
     <a href="{{ doc_root }}words/{{ session.id }}/{{ session.username }}" class="back_button" title="Back">X</a>
     <h1>{{word.word}}</h1>
