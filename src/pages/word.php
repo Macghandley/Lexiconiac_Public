@@ -14,5 +14,6 @@ if(!$word)
 }
 
 $data['word']    = $word;
+$data['warning'] = $_GET['warning'] ?? '';
 
 echo $twig->render('word.html', $data);         

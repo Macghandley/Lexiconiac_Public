@@ -98,8 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             } 
         }
         else {                                                         
-            $errors['warning'] = 'Word already exists';
-            redirect('words/');
+            redirect('word/' . $userWord['id'] . '/' . $_SESSION['username'], ['warning' => 'You already have this word in your library']);
         }
     }
 }
