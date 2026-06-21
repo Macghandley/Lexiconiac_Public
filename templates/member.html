@@ -8,6 +8,29 @@
   <section class="header">
     <h1>{{ member.username }}</h1>
     <p class="member"><b>Member since:</b> {{ member.joined|date('F d, Y') }}</p>
+    <p class="member"><b>Email:</b> {{ member.email}}</p>
+    <br>
+    <br>
+    <h2>How to use:</h2>
+    <ul>
+      <li>Create a source</li>
+      <ul>
+        <li>Go to <b>Sources</b> tab</li>
+        <li>Click 'Add Source'</li>
+        <li>Enter the name of your source, for example, "Podcast"</li>
+        <li>Pick a color to represent that source</li>
+        <li>Click 'Submit'</li>
+      </ul>
+      <li>Add a word to the source</li>
+      <ul>
+        <li>Go to <b>Words</b> tab</li>
+        <li>Click 'Add Word'</li>
+        <li>Enter a word, select the source of the word, then rate the word</li>
+        <li>Click 'Submit'</li>
+      </ul>
+      <li>Learn about the word you entered</li>
+      <li>Continue to add more words and sources to your lexicon library</li>
+    </ul>
     {% if success %}<div class="alert alert-success">{{ success }}</div>{% endif %}
     {% if session.id == member.id %}
       <!-- <nav class="member-options">
