@@ -1,7 +1,7 @@
 {% extends 'words.html' %}
 {% block header %}
     <section class="word_header">
-        <h1>Words</h1>
+        <h1>{{ word_count }} lexemes</h1>
         <div class="word_controls">
             <a href="{{ doc_root }}add-word/{{ session.id }}" class="button button_green">Add Word</a>
             <input 
