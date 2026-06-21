@@ -1,7 +1,7 @@
 {% extends 'sources.html' %}
 {% block header %}
 <section class="source_header">
-    <h1>Sources</h1>
+    <h1>{{ source_count }} sources</h1>
     <a href="{{ doc_root }}add-source/{{ session.id }}" class="button button_green">Add Source</a>
 </section>
 {% endblock %}
