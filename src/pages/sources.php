@@ -7,7 +7,10 @@ if (!$id) {// If no valid id
     include APP_ROOT . '/src/pages/page-not-found.php';  // Page not found
 }
 
+$sources  = $cms->getSource()->getAllFromMember($id);  // Get sources
+
 $data['words']    = $cms->getWord()->getAll(); // Get latest words
-$data['sources']  = $cms->getSource()->getAllFromMember($id);  // Get sources
+$data['sources']  = $sources;  // Get sources
+$data['source_count']  = count($sources);  // Get sources
 
 echo $twig->render('sources_display.html', $data);         
