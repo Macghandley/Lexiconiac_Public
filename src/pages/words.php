@@ -10,5 +10,6 @@ if (!$id) {
 $words = $cms->getWord()->getAllFromMember($id);
 
 $data['words'] = $words;
+$data['word_count'] = count($words);
 
 echo $twig->render('words_display.html', $data);         
