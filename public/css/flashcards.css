@@ -110,12 +110,21 @@
     font-size: 2.25rem;
     font-weight: bold;
     word-break: break-word;
+    color: #f7f7f5;
+    -webkit-text-stroke: 4.5px #000;
+    paint-order: stroke fill;
 }
+
 
 .flashcard_hint {
     margin-top: 1em;
     font-size: 0.9rem;
     opacity: 0.85;
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
 }
 
 .flashcard_back {
