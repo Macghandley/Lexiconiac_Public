@@ -18,7 +18,10 @@ if ($word_count > 0) {                                    // If member has at le
 
     // Load full details for that word (definition, synonyms, source, rating, etc.)
     // the same way the individual word screen does
-    $data['word'] = $cms->getWord()->getWord($random_word_id, $member_id);
+    $word = $cms->getWord()->getWord($random_word_id, $member_id);
+    $word['etymology'] = format_mw_markup($word['etymology'] ?? null); // Convert MW markup tokens to HTML
+
+    $data['word'] = $word;
 }
 
 echo $twig->render('flashcards.html', $data);             // Render Twig template
