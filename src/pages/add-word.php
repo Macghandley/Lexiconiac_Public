@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             $memberWord['word_id'] = $userWord['id'];
             $saved = $cms->getWord()->createMemberWord($memberWord);                                              
             if ($saved == true) {  
-                redirect('words/');
+                redirect('word/' . $memberWord['word_id']);
             } 
         }
         else {                                                         
