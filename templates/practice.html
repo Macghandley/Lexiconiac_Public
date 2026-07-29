@@ -2,5 +2,11 @@
 
 {% block content %}
 <main class="practice_container" id="content">
+  <h1>Practice</h1>
+  <p class="practice_intro">Choose a way to practice your words.</p>
+  <section class="practice_methods">
+    <a href="{{ doc_root }}flashcards/{{ session.id }}/{{ session.username }}" class="button button_green practice_method_button">Flashcards</a>
+    {# More practice methods can be added here later #}
+  </section>
 </main>
 {% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block content %}
+<main class="flashcards_container" id="content">
+  <div class="flashcards_header">
+    <a href="{{ doc_root }}practice/{{ session.id }}/{{ session.username }}" class="back_button" title="Back to Practice">X</a>
+    <h1>Flashcards</h1>
+    {% if word_count > 0 %}
+      <p class="flashcards_progress">{{ word_count }} word{{ word_count != 1 ? 's' : '' }} in your deck</p>
+    {% endif %}
+  </div>
+
+  {% if word_count == 0 %}
+    <div class="flashcards_empty">
+      <p>You don't have any words saved yet, so there's nothing to practice.</p>
+      <a href="{{ doc_root }}add-word/{{ session.id }}" class="button button_green">Add a Word</a>
+    </div>
+  {% else %}
+    <div class="flashcard_wrapper">
+      <button type="button" class="flashcard" id="flashcard" aria-label="Click to reveal the definition">
+        <div class="flashcard_inner">
+          <div class="flashcard_face flashcard_front">
+            <span class="flashcard_word">{{ word.word }}</span>
+            <span class="flashcard_hint">Click to reveal</span>
+          </div>
+          <div class="flashcard_face flashcard_back">
+            <h2>{{ word.word }}</h2>
+            <p><b>Definition(s):</b><br>{{ word.definition|raw }}</p>
+            <p><b>Part of Speech:</b> {{ word.part_of_speech }}</p>
+            <p><b>Synonyms:</b> {{ word.synonyms }}</p>
+            <p><b>Antonyms:</b> {{ word.antonyms }}</p>
+            <p><b>First Known Use:</b> {{ word.first_known_use }}</p>
+            <p><b>Etymology:</b> {{ word.etymology|raw }}</p>
+            <p><b>Stems:</b> {{ word.stems }}</p>
+            <p><b>Rating:</b> {{ word.rating }} / 10</p>
+            <p><b>Source:</b> {{ word.source_name }}</p>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <div class="flashcard_controls">
+      <a href="{{ doc_root }}flashcards/{{ session.id }}/{{ session.username }}" class="button button_gray">Next Word &rarr;</a>
+    </div>
+  {% endif %}
+</main>
+{% endblock %}
