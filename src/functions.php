@@ -30,6 +30,58 @@ function create_filename(string $filename, string $uploads): string
     return $filename;                                             // Return filename
 }
 
+// Convert Merriam-Webster's internal markup tokens (e.g. {it}word{/it}, {dx_ety}see {dxt|word||}{/dx_ety})
+// into real HTML so fields like etymology display properly instead of showing the raw tokens.
+function format_mw_markup(?string $text): string
+{
+    if ($text === null || $text === '') {                        // If nothing to format
+        return '';                                                // Return empty string
+    }
+
+    // Cross-reference tokens, e.g. {dxt|consanguineous||} -> italicized referenced word
+    $text = preg_replace_callback('/\{dxt\|([^|}]*)\|?[^}]*\}/', function ($m) {
+        return '<i>' . htmlspecialchars($m[1], ENT_QUOTES, 'UTF-8') . '</i>';
+    }, $text);
+
+    // Other link-style tokens, e.g. {a_link|word}, {d_link|text|target} -> plain text
+    $text = preg_replace_callback('/\{(?:a_link|d_link|i_link|et_link|dx_def)\|([^|}]*)\|?[^}]*\}/', function ($m) {
+        return $m[1];
+    }, $text);
+
+    // "See also" wrapper - unwrap it, its contents (already handled above) remain
+    $text = str_replace(['{dx_ety}', '{/dx_ety}', '{dx}', '{/dx}'], '', $text);
+
+    // Italics / bold / small caps
+    $text = str_replace(['{it}', '{/it}'], ['<i>', '</i>'], $text);
+    $text = str_replace(['{b}', '{/b}'], ['<b>', '</b>'], $text);
+    $text = str_replace(['{sc}', '{/sc}'], ['<span class="mw-smallcaps">', '</span>'], $text);
+
+    // Sub/superscript
+    $text = str_replace(['{inf}', '{/inf}'], ['<sub>', '</sub>'], $text);
+    $text = str_replace(['{sup}', '{/sup}'], ['<sup>', '</sup>'], $text);
+
+    // Curly quotes
+    $text = str_replace(['{ldquo}', '{rdquo}'], ['&ldquo;', '&rdquo;'], $text);
+
+    // Bold colon, used by MW to separate clauses
+    $text = str_replace('{bc}', ': ', $text);
+
+    // Phrase / word-indicator wrappers -> italic
+    $text = str_replace(
+        ['{phrase}', '{/phrase}', '{wi}', '{/wi}', '{qword}', '{/qword}'],
+        ['<i>', '</i>', '<i>', '</i>', '<i>', '</i>'],
+        $text
+    );
+
+    // Gloss wrapper -> parenthetical plain text
+    $text = str_replace(['{gloss}', '{/gloss}'], ['(', ')'], $text);
+
+    // Safety net: strip any remaining/unrecognized MW tokens so none ever leak to the page
+    $text = preg_replace('/\{\/?[a-z_]+(\|[^}]*)?\}/i', '', $text);
+
+    return $text;                                                 // Return formatted HTML
+}
+
 // ERROR AND EXCEPTION HANDLING FUNCTIONS
 // Convert errors to exceptions
 function handle_error($error_type, $error_message, $error_file, $error_line)
