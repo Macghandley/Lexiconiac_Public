@@ -146,6 +146,10 @@
     margin-top: 1em;
 }
 
+.mw-smallcaps {
+    font-variant: small-caps;
+}
+
 @media (max-width: 600px) {
     .practice_container,
     .flashcards_container {
