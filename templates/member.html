@@ -9,6 +9,7 @@
     <h1>{{ member.username }}</h1>
     <p class="member"><b>Member since:</b> {{ member.joined|date('F d, Y') }}</p>
     <p class="member"><b>Email:</b> {{ member.email}}</p>
+    <a class="button button_gray" href="{{ doc_root }}logout">Logout</a>
     <br>
     <br>
     <h2>How to use:</h2>
