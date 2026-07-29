@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {              // If form submitted
             $errors['message'] = 'Account suspended';          // Store message
         } elseif ($member) {                                   // Otherwise for members
             $cms->getSession()->create($member);               // Create session
-            redirect('member/' . $member['id']);               // Redirect to their page
+            redirect('words/' . $member['id']);               // Redirect to their page
         } else {                                               // Otherwise
             $errors['message'] = 'Please try again.';          // Store error message
         }
